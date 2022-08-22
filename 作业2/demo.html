@@ -27,7 +27,6 @@
           .replaceAll('&', ',')
           .replaceAll('=', ':');
         const arr1 = str.split(',');
-        console.log(arr1);
         return arr1.reduce((p, item) => {
           p[item.slice(0, item.indexOf(':'))] = item.slice(
             item.indexOf(':') + 1
