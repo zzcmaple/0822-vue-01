@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 用reduce 封装一个 1到100 的累加和
+
+      const arr = [];
+      for (let i = 1; i < 101; i++) {
+        arr.push(i);
+      }
+      const sum = arr.reduce((p, item) => {
+        return p + item;
+      }, 0);
+      console.log(sum);
+
+      //封装一个函数, 利用reduce处理http://www.baidu.com/?name=zhangsan&age=18&sex=nan&hobby=game#, 要求返回一个对象输出的结果 : { name:"zhangsan",age:18,sex:nan }
+
+      function getObj(url) {
+        let str = url
+          .slice(url.indexOf('?') + 1, url.length - 1)
+          .replaceAll('&', ',')
+          .replaceAll('=', ':');
+        const arr1 = str.split(',');
+        console.log(arr1);
+        return arr1.reduce((p, item) => {
+          p[item.slice(0, item.indexOf(':'))] = item.slice(
+            item.indexOf(':') + 1
+          );
+          return p;
+        }, {});
+      }
+      const obj = getObj(
+        'http://www.baidu.com/?name=zhangsan&age=18&sex=nan&hobby=game#'
+      );
+      console.log(obj);
+    </script>
+  </body>
+</html>
